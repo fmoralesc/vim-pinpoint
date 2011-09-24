@@ -3,12 +3,17 @@ syn match PinpointHTML  /<\/\{0,1}\a\+>/  contains=@HTML
 
 unlet b:current_syntax
 
-syn match PinpointComment /#.*$/ 
-syn match PinpointNewSlide /-\+/
+syn match PinpointComment /^#.*$/ 
+syn match PinpointBang /\%^#.*$/ contained containedin=PinpointHead
 
-syn region PinpointTag matchgroup=PinpointTagPars start=/\[/ end=/\]/
+syn region PinpointHead start=/\%^/ end=/..\(\n^-\+.*$\)\@=/ keepend
+
+syn match PinpointNewSlide /^-\+.*$/
+
+syn region PinpointTag matchgroup=PinpointTagPars start=/\[/ end=/\]/ contained containedin=PinpointHead,PinpointNewSlide
 
 hi link PinpointComment Comment
+hi link PinpointBang Comment
 hi link PinpointNewSlide Title
 hi link PinpointTagPars Identifier
 hi link PinpointTag Special
