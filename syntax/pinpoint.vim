@@ -4,9 +4,8 @@ syn match PinpointHTML  /<\/\{0,1}\a\+>/  contains=@HTML
 unlet b:current_syntax
 
 syn match PinpointComment /^#.*$/ 
-syn match PinpointBang /\%^#.*$/ contained containedin=PinpointHead
 
-syn region PinpointHead start=/\%^/ end=/..\(\n^-\+.*$\)\@=/ keepend
+syn region PinpointHead start=/\%^/ end=/..\(\n^-\+.*$\)\@=/ transparent keepend
 
 syn match PinpointNewSlide /^-\+.*$/
 
